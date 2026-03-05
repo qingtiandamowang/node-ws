@@ -1,722 +1,669 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Green Network - Protect Earth</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        :root {
-            --primary: #2e7d32;
-            --secondary: #4caf50;
-            --accent: #8bc34a;
-            --light: #e8f5e9;
-            --dark: #1b5e20;
-            --text: #333333;
-            --white: #ffffff;
-        }
-
-        body {
-            background-color: var(--light);
-            color: var(--text);
-            line-height: 1.6;
-        }
-
-        header {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
-
-        .logo i {
-            font-size: 2rem;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav ul li {
-            margin-left: 2rem;
-        }
-
-        nav ul li a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 0.5rem 0;
-            position: relative;
-        }
-
-        nav ul li a:hover {
-            color: var(--accent);
-        }
-
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--accent);
-            transition: width 0.3s ease;
-        }
-
-        nav ul li a:hover::after {
-            width: 100%;
-        }
-
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 80vh;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            color: var(--white);
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: var(--white);
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn:hover {
-            background-color: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-        }
-
-        section {
-            padding: 5rem 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background-color: var(--accent);
-            border-radius: 2px;
-        }
-
-        .section-title p {
-            color: var(--text);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-img {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .about-img img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-
-        .about-img:hover img {
-            transform: scale(1.05);
-        }
-
-        .about-text h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--dark);
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 2rem 1rem;
-            background-color: var(--white);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-10px);
-        }
-
-        .stat-item i {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .stat-item h3 {
-            font-size: 2.5rem;
-            color: var(--dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-item p {
-            color: var(--text);
-        }
-
-        .initiatives {
-            background-color: var(--white);
-        }
-
-        .initiatives-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .initiative-card {
-            background-color: var(--light);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .initiative-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .initiative-img {
-            height: 200px;
-            overflow: hidden;
-        }
-
-        .initiative-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .initiative-card:hover .initiative-img img {
-            transform: scale(1.1);
-        }
-
-        .initiative-content {
-            padding: 1.5rem;
-        }
-
-        .initiative-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-
-        .initiative-content p {
-            margin-bottom: 1.5rem;
-        }
-
-        .cta {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            text-align: center;
-            padding: 5rem 0;
-        }
-
-        .cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .cta p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta .btn {
-            background-color: var(--white);
-            color: var(--primary);
-        }
-
-        .cta .btn:hover {
-            background-color: var(--accent);
-            color: var(--white);
-        }
-
-        footer {
-            background-color: var(--dark);
-            color: var(--white);
-            padding: 3rem 0 1rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background-color: var(--accent);
-        }
-
-        .footer-column p {
-            margin-bottom: 1rem;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-links li a {
-            color: var(--light);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .footer-links li a:hover {
-            color: var(--accent);
-            padding-left: 5px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: var(--white);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background-color: var(--accent);
-            transform: translateY(-5px);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .mobile-menu {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        @media (max-width: 992px) {
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .initiatives-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            nav ul {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--primary);
-                flex-direction: column;
-                padding: 1rem 0;
-                text-align: center;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-            }
-            
-            nav ul.active {
-                display: flex;
-            }
-            
-            nav ul li {
-                margin: 0;
-                padding: 0.8rem 0;
-            }
-            
-            .mobile-menu {
-                display: block;
-            }
-            
-            .initiatives-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .stats {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Animation for stats counter */
-        .counter {
-            transition: all 0.5s ease;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEXA AI Experience Hub</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+    :root {
+      --bg-0: #f4f8ff;
+      --bg-1: #edf5ff;
+      --bg-2: #fef8ef;
+      --ink-0: #0f1f35;
+      --ink-1: #4d6583;
+      --line: rgba(34, 68, 112, 0.16);
+      --card: rgba(255, 255, 255, 0.78);
+      --cyan: #18b6ff;
+      --mint: #24d2b4;
+      --orange: #ff9a4d;
+      --shadow: 0 18px 45px rgba(19, 44, 80, 0.14);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Outfit", sans-serif;
+      color: var(--ink-0);
+      background:
+        radial-gradient(circle at 12% 12%, rgba(24, 182, 255, 0.18), transparent 30%),
+        radial-gradient(circle at 83% 18%, rgba(255, 154, 77, 0.16), transparent 34%),
+        linear-gradient(165deg, var(--bg-0), var(--bg-1) 55%, var(--bg-2));
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(35, 87, 152, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(35, 87, 152, 0.05) 1px, transparent 1px);
+      background-size: 44px 44px;
+      z-index: -1;
+    }
+
+    .container {
+      width: min(1140px, 92%);
+      margin: 0 auto;
+      padding: 26px 0 70px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      padding: 14px 18px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.66);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+    }
+
+    .logo {
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      font-size: 1.04rem;
+    }
+
+    .logo span {
+      color: var(--cyan);
+    }
+
+    .nav {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      color: var(--ink-1);
+      text-decoration: none;
+      font-size: 0.94rem;
+      font-weight: 500;
+    }
+
+    .hero {
+      margin-top: 44px;
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .kicker {
+      margin: 0 0 12px;
+      color: #1f7cc6;
+      letter-spacing: 0.08em;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(2.05rem, 5vw, 3.45rem);
+      line-height: 1.05;
+      max-width: 660px;
+    }
+
+    .hero .lead {
+      margin: 16px 0 0;
+      color: var(--ink-1);
+      font-size: 1.03rem;
+      line-height: 1.75;
+      max-width: 640px;
+    }
+
+    .chip-row {
+      margin-top: 22px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .chip {
+      border: 1px solid rgba(26, 120, 194, 0.24);
+      background: rgba(255, 255, 255, 0.74);
+      color: #285886;
+      border-radius: 999px;
+      padding: 8px 13px;
+      font-size: 0.84rem;
+      font-weight: 500;
+    }
+
+    .hero-actions {
+      margin-top: 24px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: 0;
+      padding: 11px 18px;
+      border-radius: 11px;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn.primary {
+      color: #082034;
+      background: linear-gradient(135deg, var(--mint), var(--cyan));
+      box-shadow: 0 10px 24px rgba(24, 182, 255, 0.26);
+    }
+
+    .btn.ghost {
+      color: #1c4d78;
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(29, 104, 171, 0.25);
+    }
+
+    .hero-media {
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: var(--card);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-media img {
+      width: 100%;
+      height: 360px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .media-stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      padding: 14px;
+      background: rgba(255, 255, 255, 0.86);
+      border-top: 1px solid rgba(22, 74, 123, 0.14);
+    }
+
+    .media-stats div {
+      border: 1px solid rgba(26, 102, 170, 0.18);
+      border-radius: 12px;
+      padding: 11px;
+      background: #fff;
+    }
+
+    .media-stats strong {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.2rem;
+      display: block;
+      color: #0b5889;
+      margin-bottom: 3px;
+    }
+
+    .media-stats span {
+      color: var(--ink-1);
+      font-size: 0.85rem;
+    }
+
+    .metrics {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .metrics article {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.75);
+      padding: 13px;
+      box-shadow: 0 7px 16px rgba(16, 47, 87, 0.08);
+    }
+
+    .metrics strong {
+      display: block;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.3rem;
+      color: #0f6ba2;
+      margin-bottom: 3px;
+    }
+
+    .metrics span {
+      color: var(--ink-1);
+      font-size: 0.88rem;
+    }
+
+    .section {
+      margin-top: 58px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(1.45rem, 3vw, 2.2rem);
+      max-width: 760px;
+      line-height: 1.2;
+    }
+
+    .feature-grid {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .feature {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px;
+      background: rgba(255, 255, 255, 0.76);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 8px 18px rgba(12, 43, 79, 0.08);
+    }
+
+    .feature h3 {
+      margin: 0 0 10px;
+      font-size: 1.02rem;
+    }
+
+    .feature p {
+      margin: 0;
+      color: var(--ink-1);
+      line-height: 1.7;
+      font-size: 0.92rem;
+    }
+
+    .gallery {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .shot {
+      margin: 0;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.78);
+      overflow: hidden;
+      box-shadow: 0 8px 22px rgba(17, 43, 69, 0.09);
+    }
+
+    .shot img {
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.45s ease;
+    }
+
+    .shot:hover img {
+      transform: scale(1.04);
+    }
+
+    .shot figcaption {
+      padding: 14px 14px 16px;
+    }
+
+    .shot h3 {
+      margin: 0 0 8px;
+      font-size: 1.02rem;
+    }
+
+    .shot p {
+      margin: 0;
+      color: var(--ink-1);
+      line-height: 1.65;
+      font-size: 0.9rem;
+    }
+
+    .roadmap {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .step {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.8);
+      box-shadow: 0 8px 20px rgba(17, 46, 79, 0.08);
+    }
+
+    .step span {
+      display: inline-block;
+      color: var(--orange);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .step h3 {
+      margin: 10px 0 8px;
+      font-size: 1rem;
+    }
+
+    .step p {
+      margin: 0;
+      color: var(--ink-1);
+      line-height: 1.66;
+      font-size: 0.89rem;
+    }
+
+    .cta {
+      margin-top: 58px;
+      border: 1px solid rgba(29, 103, 170, 0.22);
+      border-radius: 20px;
+      background:
+        linear-gradient(120deg, rgba(24, 182, 255, 0.16), rgba(36, 210, 180, 0.16)),
+        url("https://images.unsplash.com/photo-1526379095098-d400fd0bf935?auto=format&fit=crop&w=1600&q=80") center/cover;
+      padding: 26px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      box-shadow: var(--shadow);
+    }
+
+    .cta h2 {
+      margin: 0;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(1.3rem, 2.7vw, 2rem);
+      max-width: 620px;
+    }
+
+    .cta p {
+      margin: 10px 0 0;
+      color: rgba(14, 32, 53, 0.85);
+      line-height: 1.65;
+      max-width: 650px;
+      font-size: 0.96rem;
+    }
+
+    footer {
+      margin-top: 34px;
+      text-align: center;
+      color: #5f7a97;
+      font-size: 0.86rem;
+    }
+
+    .reveal {
+      transform: translateY(20px);
+      opacity: 0;
+      transition: 0.6s ease;
+    }
+
+    .reveal.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    @media (max-width: 1024px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-grid,
+      .gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .roadmap {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .feature-grid,
+      .gallery,
+      .roadmap,
+      .metrics,
+      .media-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-media img {
+        height: 300px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container nav-container">
-            <div class="logo">
-                <i class="fas fa-seedling"></i>
-                <span>Green Network</span>
-            </div>
-            <nav>
-                <div class="mobile-menu">
-                    <i class="fas fa-bars"></i>
-                </div>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#initiatives">Initiatives</a></li>
-                    <li><a href="#get-involved">Get Involved</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
+  <div class="container">
+    <header class="topbar reveal">
+      <div class="logo">NEXA<span>.AI</span></div>
+      <nav class="nav">
+        <a href="#">Capability Engine</a>
+        <a href="#">Industry Solutions</a>
+        <a href="#">Deployment Model</a>
+        <a href="#">Contact Team</a>
+      </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container hero-content">
-            <h1>Protect Our Planet, Preserve Our Future</h1>
-            <p>Join the global movement to create a sustainable world through conservation, education, and community action.</p>
-            <a href="#get-involved" class="btn">Join Our Network</a>
+    <section class="hero">
+      <div class="reveal">
+        <p class="kicker">Enterprise AI Operating Layer</p>
+        <h1>Turn everyday operations into intelligent workflows.</h1>
+        <p class="lead">
+          Build and launch practical AI applications across support, marketing, operations, and decision analysis.
+          Connect your business systems, learn from internal data, and automate repeatable growth at scale.
+        </p>
+        <div class="chip-row">
+          <span class="chip">Multi-Model Orchestration</span>
+          <span class="chip">Knowledge Search + Q&A</span>
+          <span class="chip">Autonomous Agents</span>
+          <span class="chip">Private Cloud Deployment</span>
         </div>
+        <div class="hero-actions">
+          <button class="btn primary">Book a Demo</button>
+          <button class="btn ghost">Explore Architecture</button>
+        </div>
+      </div>
+
+      <aside class="hero-media reveal">
+        <img
+          src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1400&q=80"
+          alt="Team monitoring AI dashboards in a modern workspace"
+        />
+        <div class="media-stats">
+          <div>
+            <strong>97%</strong>
+            <span>Auto-response coverage</span>
+          </div>
+          <div>
+            <strong>42%</strong>
+            <span>Lower operating cost</span>
+          </div>
+          <div>
+            <strong>8x</strong>
+            <span>Content production speed</span>
+          </div>
+          <div>
+            <strong>24/7</strong>
+            <span>Always-on AI service</span>
+          </div>
+        </div>
+      </aside>
     </section>
 
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>About Green Network</h2>
-                <p>We are a global community dedicated to environmental protection and sustainable development.</p>
-            </div>
-            <div class="about-content">
-                <div class="about-img">
-                    <img src="https://images.unsplash.com/photo-1507591064344-4c6ce005b128?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Team planting trees">
-                </div>
-                <div class="about-text">
-                    <h3>Our Mission</h3>
-                    <p>Green Network is committed to creating a sustainable future by protecting natural ecosystems, promoting renewable energy, and empowering communities to take environmental action.</p>
-                    <p>Founded in 2010, we've grown from a small grassroots organization to an international network with over 50,000 members across 120 countries.</p>
-                    <p>Our approach combines scientific research, community engagement, and policy advocacy to address the most pressing environmental challenges of our time.</p>
-                    <a href="#" class="btn">Learn More</a>
-                </div>
-            </div>
-            <div class="stats">
-                <div class="stat-item">
-                    <i class="fas fa-tree"></i>
-                    <h3 class="counter" data-target="2500000">0</h3>
-                    <p>Trees Planted</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-users"></i>
-                    <h3 class="counter" data-target="50000">0</h3>
-                    <p>Active Members</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-globe-americas"></i>
-                    <h3 class="counter" data-target="120">0</h3>
-                    <p>Countries Reached</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-recycle"></i>
-                    <h3 class="counter" data-target="1500">0</h3>
-                    <p>Cleanup Projects</p>
-                </div>
-            </div>
-        </div>
+    <section class="metrics">
+      <article class="reveal">
+        <strong>130+</strong>
+        <span>Connected enterprise data sources</span>
+      </article>
+      <article class="reveal">
+        <strong>2.1M</strong>
+        <span>Monthly workflow executions</span>
+      </article>
+      <article class="reveal">
+        <strong>99.95%</strong>
+        <span>Platform availability target</span>
+      </article>
+      <article class="reveal">
+        <strong>15 Days</strong>
+        <span>Typical time to first production launch</span>
+      </article>
     </section>
 
-    <!-- Initiatives Section -->
-    <section class="initiatives" id="initiatives">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Initiatives</h2>
-                <p>Discover the key programs and projects we're implementing to protect our planet.</p>
-            </div>
-            <div class="initiatives-grid">
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://dialogue.earth/content/uploads/2021/04/lessons-from-the-rush-to-reforest-china-dialogue-2400x1599.jpg" alt="Reforestation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Global Reforestation</h3>
-                        <p>Planting millions of trees worldwide to restore ecosystems, combat climate change, and protect biodiversity.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1621451537084-482c73073a0f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Ocean Conservation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Ocean Conservation</h3>
-                        <p>Protecting marine ecosystems, reducing plastic pollution, and promoting sustainable fishing practices.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="Renewable Energy">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Renewable Energy</h3>
-                        <p>Promoting solar, wind, and other clean energy sources to reduce dependence on fossil fuels.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <section class="section">
+      <div class="section-head">
+        <p class="kicker">Core Modules</p>
+        <h2>Everything your AI stack needs in one control plane</h2>
+      </div>
+      <div class="feature-grid">
+        <article class="feature reveal">
+          <h3>Knowledge Intelligence Hub</h3>
+          <p>Unify docs, FAQs, and domain databases with semantic retrieval and high-trust answers for internal and external support.</p>
+        </article>
+        <article class="feature reveal">
+          <h3>Automation Agent Studio</h3>
+          <p>Design event-driven agents that handle form processing, routing, approvals, and repetitive operations through API integrations.</p>
+        </article>
+        <article class="feature reveal">
+          <h3>Growth Content Pipeline</h3>
+          <p>Generate campaign copy, scripts, and launch plans in batches while preserving brand voice and enabling rapid A/B testing.</p>
+        </article>
+        <article class="feature reveal">
+          <h3>Analytics Copilot</h3>
+          <p>Ask natural-language questions, get instant trend insights, and receive automated risk highlights for faster decision cycles.</p>
+        </article>
+        <article class="feature reveal">
+          <h3>Omnichannel Delivery Layer</h3>
+          <p>Deploy to web portals, chat apps, mobile mini-programs, and internal systems with a consistent AI experience across channels.</p>
+        </article>
+        <article class="feature reveal">
+          <h3>Security and Governance</h3>
+          <p>Control access by role, enforce audit trails, and protect sensitive data to meet enterprise compliance and reliability standards.</p>
+        </article>
+      </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta" id="get-involved">
-        <div class="container">
-            <h2>Join Our Global Movement</h2>
-            <p>Together, we can create a sustainable future for generations to come. Every action counts, no matter how small.</p>
-            <a href="#" class="btn">Become a Member</a>
-        </div>
+    <section class="section">
+      <div class="section-head">
+        <p class="kicker">Scene Gallery</p>
+        <h2>Built for real teams, not demo-only environments</h2>
+      </div>
+      <div class="gallery">
+        <figure class="shot reveal">
+          <img
+            src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80"
+            alt="Support team using shared analytics dashboards"
+          />
+          <figcaption>
+            <h3>Smart Support Desk</h3>
+            <p>Resolve high-volume requests with AI-guided agents and continuously updated knowledge responses.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="shot reveal">
+          <img
+            src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=1200&q=80"
+            alt="Marketing and product team collaborating on campaign planning"
+          />
+          <figcaption>
+            <h3>Campaign Control Room</h3>
+            <p>Generate content, segment audiences, and launch multichannel experiments from a single AI workspace.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="shot reveal">
+          <img
+            src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1200&q=80"
+            alt="Engineer building automation and data integration pipelines"
+          />
+          <figcaption>
+            <h3>Operations Automation Lab</h3>
+            <p>Connect internal tools and trigger autonomous workflows that eliminate manual, error-prone handoffs.</p>
+          </figcaption>
+        </figure>
+      </div>
     </section>
 
-    <!-- Footer -->
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Green Network</h3>
-                    <p>We are dedicated to protecting our planet through collaborative action, education, and sustainable solutions.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#initiatives">Initiatives</a></li>
-                        <li><a href="#get-involved">Get Involved</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Our Programs</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Reforestation</a></li>
-                        <li><a href="#">Ocean Cleanup</a></li>
-                        <li><a href="#">Wildlife Protection</a></li>
-                        <li><a href="#">Climate Education</a></li>
-                        <li><a href="#">Sustainable Agriculture</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Contact Us</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Copper Creek Drive, New York</p>
-                    <p><i class="fas fa-phone"></i> +1 (312) 171-0771</p>
-                    <p><i class="fas fa-envelope"></i> support@greennetwork.org</p>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2025 Green Network. All rights reserved.</p>
-            </div>
-        </div>
+    <section class="section">
+      <div class="section-head">
+        <p class="kicker">Launch Roadmap</p>
+        <h2>From pilot to enterprise scale in four practical steps</h2>
+      </div>
+      <div class="roadmap">
+        <article class="step reveal">
+          <span>Step 01</span>
+          <h3>Workflow Audit</h3>
+          <p>Identify high-frequency, measurable, and automation-ready processes to define the first set of AI opportunities.</p>
+        </article>
+        <article class="step reveal">
+          <span>Step 02</span>
+          <h3>Data Foundation</h3>
+          <p>Connect documents, business databases, and APIs to establish a reliable and continuously updated intelligence layer.</p>
+        </article>
+        <article class="step reveal">
+          <span>Step 03</span>
+          <h3>Production Rollout</h3>
+          <p>Deploy with guardrails, monitor real usage, and optimize prompts, rules, and retrieval quality in live environments.</p>
+        </article>
+        <article class="step reveal">
+          <span>Step 04</span>
+          <h3>Scale by Template</h3>
+          <p>Reuse tested components and rollout playbooks to expand AI capability across departments and business units.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="cta reveal">
+      <div>
+        <p class="kicker">Ready to Start</p>
+        <h2>Deploy your first AI workflow in weeks, not quarters.</h2>
+        <p>Bring your teams, data, and channels into one intelligent system that improves output quality while reducing operational effort.</p>
+      </div>
+      <button class="btn primary">Request a Solution Plan</button>
+    </section>
+
+    <footer>
+      &copy; <span id="year"></span> NEXA.AI · Intelligent Application Platform
     </footer>
+  </div>
 
-    <script>
-        // Mobile Menu Toggle
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
-            document.querySelector('nav ul').classList.toggle('active');
-        });
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-        // Counter Animation
-        function animateCounters() {
-            const counters = document.querySelectorAll('.counter');
-            const speed = 200; // The lower the slower
-            
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                const count = +counter.innerText;
-                
-                const inc = target / speed;
-                
-                if(count < target) {
-                    counter.innerText = Math.ceil(count + inc);
-                    setTimeout(animateCounters, 1);
-                } else {
-                    counter.innerText = target;
-                }
-            });
-        }
+    const revealNodes = document.querySelectorAll(".reveal");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add("show");
+      });
+    }, { threshold: 0.15 });
 
-        // Initialize counters when page loads
-        window.addEventListener('load', animateCounters);
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    document.querySelector('nav ul').classList.remove('active');
-                }
-            });
-        });
-    </script>
+    revealNodes.forEach((node, index) => {
+      node.style.transitionDelay = `${index * 55}ms`;
+      observer.observe(node);
+    });
+  </script>
 </body>
-
 </html>
